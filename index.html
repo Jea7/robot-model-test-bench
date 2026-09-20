@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Robot Model Test Bench</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script type="module" src="./test-screen.js"></script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <header>
+        <div><p class="eyebrow">DIGITAL TWIN / TEST BENCH</p><h1>로봇 모델 테스트</h1></div>
+        <div class="status"><i></i><span id="load-status">초기화 중</span></div>
+      </header>
+      <section class="workspace">
+        <aside class="left-panel panel">
+          <p class="section-title">모델 선택</p>
+          <div class="model-buttons" role="group" aria-label="모델 선택">
+            <button data-model="agv" class="selected"><b>AGV</b><small>Material transport</small></button>
+            <button data-model="amr"><b>AMR</b><small>Autonomous mobile</small></button>
+            <button data-model="arm"><b>ATM ARM</b><small>Wafer handling</small></button>
+          </div>
+          <div class="divider"></div>
+          <p class="section-title">장면</p>
+          <label>그리드 <input id="grid-toggle" type="checkbox" checked></label>
+          <label>자동 회전 <input id="auto-rotate" type="checkbox"></label>
+          <label>카메라 보기
+            <select id="camera-view"><option value="iso">등각</option><option value="front">전면</option><option value="top">상단</option><option value="side">측면</option></select>
+          </label>
+          <button id="reset-view" class="outline">카메라 초기화</button>
+          <p class="hint">마우스: 회전 · 휠: 확대 · 우클릭: 이동</p>
+        </aside>
+        <section class="viewport-wrap">
+          <canvas id="viewport"></canvas>
+          <div class="viewport-label"><span id="model-name">AGV</span><span id="model-meta">0개 조작 부품</span></div>
+          <div id="loader" class="loader">모델 불러오는 중…</div>
+        </section>
+        <aside class="right-panel panel">
+          <p class="section-title">테스트 제어</p>
+          <div id="controls" class="controls"></div>
+          <div class="divider"></div>
+          <p class="section-title">위치</p>
+          <div class="position"><label>X <input id="pos-x" type="range" min="-3" max="3" step="0.05" value="0"></label><output id="x-output">0.00</output></div>
+          <div class="position"><label>Y <input id="pos-y" type="range" min="0" max="2" step="0.05" value="0"></label><output id="y-output">0.00</output></div>
+          <div class="position"><label>Z <input id="pos-z" type="range" min="-3" max="3" step="0.05" value="0"></label><output id="z-output">0.00</output></div>
+          <button id="reset-model" class="outline">모델 상태 초기화</button>
+        </aside>
+      </section>
+      <footer>GLB 모델 테스트 전용 화면 · 실제 충돌 판정, 경로 계획, 센서 데이터는 포함하지 않습니다.</footer>
+    </main>
+  </body>
+</html>
